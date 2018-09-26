@@ -5,21 +5,24 @@
  */
 package servlets;
 
+import entity.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.BookFacade;
 
 /**
  *
  * @author pupil
  */
-@WebServlet(name = "servlet1", urlPatterns = {"/page1","/page2"})
-public class Servlet1 extends HttpServlet {
-
+@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook"})
+public class Library extends HttpServlet {
+@EJB BookFacade bookFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,16 +35,21 @@ public class Servlet1 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        request.setCharacterEncoding("UTF-8");
         String path = request.getServletPath();
-        if("/page1".equals(path)){
-            String textToPage = "Text for testing(page1)"; 
-            request.setAttribute("textToPage", textToPage); //в "" идет переменная, которую мы передаем в .jsp файл(обычно называют так же как и переменную, т.е textToPage ). textToPage - название переменной тут  -String textToPage
-            request.getRequestDispatcher("/WEB-INF/pages/page1.jsp").forward(request, response);
+        if("/newBook".equals(path)){
+            
+            request.getRequestDispatcher("/WEB-INF/pages/newBook.jsp").forward(request, response);
         
-        }else if("/page2".equals(path)){
-            String textToPage = "Text for testing(page2)";
-            request.setAttribute("textToPage", textToPage);
+        }else if("/addBook".equals(path)){
+            String bookName = request.getParameter("bookName"); //имена параметров
+            String bookAuthor = request.getParameter("bookAuthor");
+            String bookPublish = request.getParameter("bookPublish");
+            String bookIsbn = request.getParameter("bookIsbn");
+            
+            Book book = new Book(bookName, bookAuthor, new Integer (bookPublish), bookIsbn);//инициируем книгу
+            bookFacade.create(book);
+            request.setAttribute("book", book); //передаем данные на страницу page2.jsp
             request.getRequestDispatcher("/WEB-INF/pages/page2.jsp").forward(request, response);
         }
     }
