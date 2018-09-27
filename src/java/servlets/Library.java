@@ -6,6 +6,7 @@
 package servlets;
 
 import entity.Book;
+import entity.Reader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -15,14 +16,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import session.BookFacade;
+import session.ReaderFacade;
 
 /**
  *
  * @author pupil
  */
-@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook"})
+@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook","/newReader","/addReader"})
 public class Library extends HttpServlet {
 @EJB BookFacade bookFacade;
+@EJB ReaderFacade readerFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,8 +52,23 @@ public class Library extends HttpServlet {
             
             Book book = new Book(bookName, bookAuthor, new Integer (bookPublish), bookIsbn);//инициируем книгу
             bookFacade.create(book);
-            request.setAttribute("book", book); //передаем данные на страницу page2.jsp
-            request.getRequestDispatcher("/WEB-INF/pages/page2.jsp").forward(request, response);
+            request.setAttribute("book", book); //передаем данные на страницу addBook.jsp
+            request.getRequestDispatcher("/WEB-INF/pages/addBook.jsp").forward(request, response);
+        }
+        else if("/newReader".equals(path)){
+            
+            request.getRequestDispatcher("/WEB-INF/pages/newReader.jsp").forward(request, response);
+        
+        }else if("/addReader".equals(path)){
+            String name = request.getParameter("name"); //имена параметров
+            String surname = request.getParameter("surname");
+            String phone = request.getParameter("phone");
+            String city = request.getParameter("city");
+            
+            Reader reader = new Reader(name, surname, phone, city);//инициируем книгу
+            readerFacade.create(reader);
+            request.setAttribute("reader", reader); //передаем данные на страницу page2.jsp
+            request.getRequestDispatcher("/WEB-INF/pages/addReader.jsp").forward(request, response);
         }
     }
 

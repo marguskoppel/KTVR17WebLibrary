@@ -8,7 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>This is page2.jsp</h1>
+        <h1>AddBook page</h1>
         ${textToPage} <!-- переменная из servlet1-->
         <a href="newBook">Add book</a><br><br>
          Added book name:<br>

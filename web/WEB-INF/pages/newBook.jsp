@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>NewBook page</title>
     </head>
     <body>
         <div>
@@ -25,7 +25,7 @@
                 <input type="text" name="bookIsbn" placeholder="ISBN"><br><br>
                 <input type="submit" value="Add book">
             </form><br><br>
-           
+
 
         </div>
     </body>
