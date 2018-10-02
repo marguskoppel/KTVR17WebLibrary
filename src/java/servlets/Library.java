@@ -9,6 +9,7 @@ import entity.Book;
 import entity.Reader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ import session.ReaderFacade;
  *
  * @author pupil
  */
-@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook","/newReader","/addReader"})
+@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook","/newReader","/addReader","/listBookReader"})
 public class Library extends HttpServlet {
 @EJB BookFacade bookFacade;
 @EJB ReaderFacade readerFacade;
@@ -40,7 +41,12 @@ public class Library extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String path = request.getServletPath();
-        if("/newBook".equals(path)){
+        if("/listBookReader".equals(path)){
+            bookFacade.findAll();
+            request.setAttribute("allBooks", bookFacade.findAll());
+            request.getRequestDispatcher("/WEB-INF/pages/listBookReader.jsp").forward(request, response);}
+        
+        else if("/newBook".equals(path)){
             
             request.getRequestDispatcher("/WEB-INF/pages/newBook.jsp").forward(request, response);
         

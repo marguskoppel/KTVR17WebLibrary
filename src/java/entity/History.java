@@ -5,12 +5,16 @@
  */
 package entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -18,12 +22,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class History {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
     private Book book;
+    @OneToOne
     private Reader reader;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date bookIssued;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date bookReturned;
 
     public History() {
@@ -119,8 +128,12 @@ public class History {
 
     @Override
     public String toString() {
-        return "History{" + "id=" + id + ", book=" + book + ", reader=" + reader + ", bookIssued=" + bookIssued + ", bookReturned=" + bookReturned + '}';
+        SimpleDateFormat sdm = new SimpleDateFormat("dd.mm.yyyy");
+        if (bookReturned != null) {
+            return "History{" + "id=" + id + ", book=" + book.getBookName() + ", reader=" + reader.getName() + ",reader=" + reader.getSurname() + ", bookIssued=" + sdm.format(bookIssued) + ", bookReturned=" + sdm.format(bookReturned) + '}';
+        } else {
+            return "History{" + "id=" + id + ", book=" + book.getBookName() + ", reader=" + reader.getName() + ",reader=" + reader.getSurname() + ", bookIssued=" + sdm.format(bookIssued) + '}';
+        }
+
     }
-    
-    
 }
