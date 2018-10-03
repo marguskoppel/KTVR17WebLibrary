@@ -23,7 +23,7 @@ import session.ReaderFacade;
  *
  * @author pupil
  */
-@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook","/newReader","/addReader","/listBookReader"})
+@WebServlet(name = "Library", urlPatterns = {"/newBook","/addBook","/newReader","/addReader","/listBookReader","/showBooks"})
 public class Library extends HttpServlet {
 @EJB BookFacade bookFacade;
 @EJB ReaderFacade readerFacade;
@@ -75,6 +75,10 @@ public class Library extends HttpServlet {
             readerFacade.create(reader);
             request.setAttribute("reader", reader); //передаем данные на страницу page2.jsp
             request.getRequestDispatcher("/WEB-INF/pages/page1.jsp").forward(request, response);
+        }else if("/showBooks".equals(path)){
+            List<Book> bookList = bookFacade.findAll();
+            request.setAttribute("bookList", bookList);
+            request.getRequestDispatcher("/WEB-INF/pages/bookList.jsp").forward(request, response);
         }
     }
 

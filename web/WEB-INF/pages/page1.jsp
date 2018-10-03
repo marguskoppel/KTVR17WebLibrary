@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +12,9 @@
         
         
         <a href="newBook">Add Book</a><br>
-        <a href="newReader">Add Reader</a>
+        <a href="newReader">Add Reader</a><br>
+        <a href="showBooks">List of books</a>
+        
         <br>
         <hr><b>Added book name:</b><br>
             ${book.bookName}<br><br> <!--тут book берется из servlet'a Library -> "book"-->
