@@ -7,7 +7,29 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>This is page1.jsp</h1>
-        ${textToPage}
+        <h1>Starting page</h1>
+        
+        
+        <a href="newBook">Add Book</a><br>
+        <a href="newReader">Add Reader</a>
+        <br>
+        <hr><b>Added book name:</b><br>
+            ${book.bookName}<br><br> <!--тут book берется из servlet'a Library -> "book"-->
+            <b>Author:</b><br>
+            ${book.bookAuthor}<br><br>
+            <b>Publishing year:</b><br>
+            ${book.bookPublish}<br><br>
+            <b>ISBN:</b><br>
+            ${book.bookIsbn}<br>
+            
+            <hr><b>Reader added</b><br><br><br>
+            <b>Name:</b><br>
+            ${reader.name}<br><br> <!--тут reader берется из servlet'a Library -> "reader"-->
+            <b>Surname:</b><br>
+            ${reader.surname}<br><br>
+            <b>Phone:</b><br>
+            ${reader.phone}<br><br>
+            <b>City:</b><br>
+            ${reader.city}<br>
     </body>
 </html>

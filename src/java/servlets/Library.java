@@ -59,7 +59,7 @@ public class Library extends HttpServlet {
             Book book = new Book(bookName, bookAuthor, new Integer (bookPublish), bookIsbn);//инициируем книгу
             bookFacade.create(book);
             request.setAttribute("book", book); //передаем данные на страницу addBook.jsp
-            request.getRequestDispatcher("/WEB-INF/pages/addBook.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/page1.jsp").forward(request, response);
         }
         else if("/newReader".equals(path)){
             
@@ -74,7 +74,7 @@ public class Library extends HttpServlet {
             Reader reader = new Reader(name, surname, phone, city);//инициируем книгу
             readerFacade.create(reader);
             request.setAttribute("reader", reader); //передаем данные на страницу page2.jsp
-            request.getRequestDispatcher("/WEB-INF/pages/addReader.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/page1.jsp").forward(request, response);
         }
     }
 
