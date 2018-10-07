@@ -30,7 +30,7 @@ public class HistoryFacade extends AbstractFacade<History> {
         super(History.class);
     }
     public List<History> findTakeBooks(){
-        return em.createQuery("SELECT h FROM History h WHERE h.dateReturn=NULL")
+        return em.createQuery("SELECT h FROM History h WHERE h.bookReturned=NULL")
                 .getResultList();
     }
 
