@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>List of the books</title>
+        <title>List of readers</title>
     </head>
     <body>
-        <h1>Books in Library</h1>
+        <h1>Readers</h1>
         <ul>
             <c:forEach var="book" items="${bookList}">
                 <li>${book.bookName} ${book.bookAuthor}</li>

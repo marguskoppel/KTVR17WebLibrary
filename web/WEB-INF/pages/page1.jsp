@@ -13,7 +13,10 @@
         
         <a href="newBook">Add Book</a><br>
         <a href="newReader">Add Reader</a><br>
-        <a href="showBooks">List of books</a>
+        <a href="showBooks">List of books</a><br>
+        <a href="showReaders">List of readers</a><br>
+        <a href="library">Take book</a><br>
+        <a href="showTakeBook">List of taken books</a>
         
         <br>
         <hr><b>Added book name:</b><br>

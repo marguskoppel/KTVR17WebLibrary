@@ -5,14 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Books in Library</title>
+        <title>List of readers</title>
     </head>
     <body>
-        <h1>Books in Library</h1>
+        <h1>Readers</h1>
+        <ul>
+            <c:forEach var="reader" items="${readerList}">
+                <li>${reader.name} ${reader.surname}</li>
+
+            </c:forEach>
+        </ul>
         
     </body>
 </html>
