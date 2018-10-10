@@ -10,13 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>List of readers</title>
+        <title>List of books</title>
     </head>
     <body>
-        <h1>Readers</h1>
+        <h1>Books</h1>
         <ul>
             <c:forEach var="book" items="${bookList}">
-                <li>${book.bookName} ${book.bookAuthor}</li>
+                <li>"${book.bookName}" by ${book.bookAuthor} (count: ${book.count})
+                <a href="deleteBook?deleteBookId=${book.id}">Delete book</a>
+                </li>
 
             </c:forEach>
         </ul>

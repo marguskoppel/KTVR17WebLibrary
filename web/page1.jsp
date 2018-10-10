@@ -26,7 +26,10 @@
             <b>Publishing year:</b><br>
             ${book.bookPublish}<br><br>
             <b>ISBN:</b><br>
-            ${book.bookIsbn}<br>
+            ${book.bookIsbn}<br><br>
+            <b>Count:</b><br>
+            ${book.count}<br><br>
+            
             
             <hr><b>Reader added</b><br><br><br>
             <b>Name:</b><br>

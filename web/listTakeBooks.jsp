@@ -16,7 +16,9 @@
         <h1>List of taken books</h1>
         <ul>
             <c:forEach var="history" items="${takeBooks}">
-                <li>Book: ${history.book.bookName} was taken by: ${history.reader.name} ${history.reader.surname}</li>
+                <li>Book: ${history.book.bookName} was taken by: ${history.reader.name} ${history.reader.surname} at ${history.bookIssued}
+                <a href="returnBook?historyId=${history.id}"> Return book</a>
+                </li>
             </c:forEach> 
         </ul>
     </body>

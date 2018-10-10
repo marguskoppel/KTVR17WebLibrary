@@ -23,6 +23,8 @@
                 <input type="text" name="bookPublish" placeholder="Publishing year"><br><br>
                 ISBN:<br>
                 <input type="text" name="bookIsbn" placeholder="ISBN"><br><br>
+                Count:<br>
+                <input type="text" name="count"><br><br>
                 <input type="submit" value="Add book">
             </form><br><br>
 
