@@ -13,7 +13,8 @@
         <title>Taken books</title>
     </head>
     <body>
-        <h1>List of taken books</h1>
+        <h1>List of taken books</h1
+        ${info}
         <ul>
             <c:forEach var="history" items="${takeBooks}">
                 <li>Book: ${history.book.bookName} was taken by: ${history.reader.name} ${history.reader.surname} at ${history.bookIssued}

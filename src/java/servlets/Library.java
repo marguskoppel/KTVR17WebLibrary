@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import session.BookFacade;
 import session.HistoryFacade;
 import session.ReaderFacade;
+import util.PageReturner;
 
 /**
  *
@@ -69,7 +70,7 @@ public class Library extends HttpServlet {
         if(null != path)
             switch (path) {
         case "/newBook":
-            request.getRequestDispatcher("/WEB-INF/pages/newBook.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("newBook")).forward(request, response);
             break;
         case "/addBook":{
             String bookName = request.getParameter("bookName"); //имена параметров
@@ -80,11 +81,11 @@ public class Library extends HttpServlet {
             Book book = new Book(bookName, bookAuthor, new Integer(bookPublish), bookIsbn, new Integer(countStr));
             bookFacade.create(book);
             request.setAttribute("book", book);
-            request.getRequestDispatcher("/page1.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("welcome")).forward(request, response);
                 break;
             }
         case "/newReader":
-            request.getRequestDispatcher("/WEB-INF/pages/newReader.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("newReader")).forward(request, response);
             break;
         case "/addReader":{
             String name = request.getParameter("name");
@@ -94,29 +95,29 @@ public class Library extends HttpServlet {
             Reader reader = new Reader(name, surname, phone, city);
             readerFacade.create(reader);
             request.setAttribute("reader", reader);
-            request.getRequestDispatcher("/page1.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("welcome")).forward(request, response);
                 break;
             }
         case "/showBooks":{
             List<Book> bookList = bookFacade.findActived(true);
             request.setAttribute("bookList", bookList);
-            request.getRequestDispatcher("/bookList.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("bookList")).forward(request, response);
                 break;
             }
         case "/showReaders":
             List<Reader> readerList = readerFacade.findAll();
             request.setAttribute("readerList", readerList);
-            request.getRequestDispatcher("/readerList.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("readerList")).forward(request, response);
             break;
         case "/library":
             request.setAttribute("bookList", bookFacade.findActived(true));
             request.setAttribute("readerList", readerFacade.findAll());
-            request.getRequestDispatcher("/library.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("takeBook")).forward(request, response);
             break;
         case "/showTakeBook":{
             List<History> takeBooks = historyFacade.findTakeBooks();
             request.setAttribute("takeBooks", takeBooks);
-            request.getRequestDispatcher("/listTakeBooks.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("listTakeBook")).forward(request, response);
                 break;
             }
         case "/takeBook":{
@@ -136,7 +137,7 @@ public class Library extends HttpServlet {
             }
             List<History> takeBooks = historyFacade.findTakeBooks();
             request.setAttribute("takeBooks", takeBooks);
-            request.getRequestDispatcher("/listTakeBooks.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("listTakeBook")).forward(request, response);
                 break;
             }
         case "/returnBook":{
@@ -148,7 +149,7 @@ public class Library extends HttpServlet {
             historyFacade.edit(history);
             List<History> takeBooks = historyFacade.findTakeBooks();
             request.setAttribute("takeBooks", takeBooks);
-            request.getRequestDispatcher("/listTakeBooks.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("listTakeBook")).forward(request, response);
                 break;
             }
         case "/deleteBook":{
@@ -159,11 +160,11 @@ public class Library extends HttpServlet {
             //historyFacade.remove(deleteBookId);
             List<Book> bookList = bookFacade.findActived(true);
             request.setAttribute("bookList", bookList);
-            request.getRequestDispatcher("/bookList.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("listBook")).forward(request, response);
                 break;
             }
         default:
-            request.getRequestDispatcher("/page1.jsp").forward(request, response);
+            request.getRequestDispatcher(PageReturner.getPage("welcome")).forward(request, response);
             break;
     }
         
