@@ -1,39 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- *
- * @author pupil
- */
+
 @Entity
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private String surname;
     private String phone;
     private String city;
+    @Column(unique = true)
+    private String login;
+    private String password;
+    private String salts;
 
     public Reader() {
     }
 
-    public Reader(String name, String surname, String phone, String city) {
+    public Reader(String name, String surname, String phone, String city, String login, String password) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.city = city;
+        this.login = login;
+        this.password = password;
     }
+
+   
 
     public String getCity() {
         return city;
@@ -44,11 +46,11 @@ public class Reader {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -75,14 +77,35 @@ public class Reader {
         this.phone = phone;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSalts() {
+        return salts;
+    }
+
+    public void setSalts(String salts) {
+        this.salts = salts;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.Id);
-        hash = 47 * hash + Objects.hashCode(this.name);
-        hash = 47 * hash + Objects.hashCode(this.surname);
-        hash = 47 * hash + Objects.hashCode(this.phone);
-        hash = 47 * hash + Objects.hashCode(this.city);
+        int hash = 3;
+        hash = 73 * hash + Objects.hashCode(this.login);
+        hash = 73 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -98,19 +121,10 @@ public class Reader {
             return false;
         }
         final Reader other = (Reader) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.login, other.login)) {
             return false;
         }
-        if (!Objects.equals(this.surname, other.surname)) {
-            return false;
-        }
-        if (!Objects.equals(this.phone, other.phone)) {
-            return false;
-        }
-        if (!Objects.equals(this.city, other.city)) {
-            return false;
-        }
-        if (!Objects.equals(this.Id, other.Id)) {
+        if (!Objects.equals(this.password, other.password)) {
             return false;
         }
         return true;
@@ -118,8 +132,9 @@ public class Reader {
 
     @Override
     public String toString() {
-        return "Reader{" + "Id=" + Id + ", name=" + name + ", surname=" + surname + ", phone=" + phone + ", city=" + city + '}';
+        return "Reader{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", phone=" + phone + ", city=" + city + ", login=" + login + ", password=" + password + ", salts=" + salts + '}';
     }
-    
+
    
+    
 }

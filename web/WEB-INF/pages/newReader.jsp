@@ -23,6 +23,12 @@
                 <input type="text" name="phone" placeholder="Phone"><br><br>
                 City:<br>
                 <input type="text" name="city" placeholder="City"><br><br>
+                Login:<br>
+                <input type="text" name="login" placeholder="Phone"><br><br>
+                Password:<br>
+                <input type="text" name="password1" placeholder="Phone"><br><br>
+                Re-enter password:<br>
+                <input type="text" name="password2" placeholder="Phone"><br><br>
                 <input type="submit" value="Add reader">
             </form><br><br>
 
